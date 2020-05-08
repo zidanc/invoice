@@ -26,8 +26,12 @@
     </select>
     獎號:
     <input type="text" name="code">
-    <input type="text" name="number">
+    <input type="number" name="number">
+
+    花費:
+    <input type="number" name="expend">
     <input type="submit" value="儲存">
+
   </form>
 
 </body>
