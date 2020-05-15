@@ -26,7 +26,7 @@ function arr_mer($a,...$b){     //這種寫法的$b就已經是二維陣列了�
       $array[]=$i;
     }
   }
-  return $array;
+  return $array;    //回此$array給function arr_mer去執行。
 }
 
 $name=[10=>"簡",12=>"志",20=>"瀚"];
