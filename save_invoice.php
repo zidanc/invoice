@@ -7,7 +7,7 @@ include "./common/base.php";
 
 //   echo $sql;
   
-// $data=[
+// $data=[        這可以省略不寫，是因為在當初index.php使用的name與欄位的命名一樣，所以$_POST進來時，不需要重複指定一次。
 //   'period'=>$_POST['period'],
 //   'year'=>$_POST['year'],
 //   'code'=>$_POST['code'],
