@@ -3,3 +3,9 @@
   padding: 0px;
   box-sizing: border-box;
 }
+
+
+
+.header ul,.nav{
+  list-style-type: none;
+}

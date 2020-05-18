@@ -8,5 +8,6 @@
 </head>
 <body>
   <?php include "./include/header.php";?>
+  兌獎
 </body>
 </html>

@@ -30,8 +30,8 @@
 
   <?php
   
-    $sql="select * from `invoice` where period='$period'";
-    $rows=$pdo->query($sql)->fetchAll();
+    // $sql="select * from `invoice` where period='$period'";
+    $rows=all('invoice',['peroid'=>$period]);
   ?>
   
   <table>
