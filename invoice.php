@@ -1,5 +1,7 @@
-<?php include "./common/base.php";?>
-<?php
+<?php include "./common/base.php";
+
+$period=ceil(date("n")/2);
+
   $monthStr=[
     '1'=>"1,2月",
     '2'=>"3,4月",
@@ -23,8 +25,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>統一發票管理系統</title>
-  <link rel="stylesheet" href=".css/style.css">
+  <link rel="stylesheet" href="./css/style.css">
 </head>
+
 <body>
   <?php include "./include/header.php";?>
  
@@ -54,11 +57,21 @@
     </tr>
     <tr>
       <td>特別獎</td>
-      <td><?=$num1['number'];?></td>
+      <td><?php
+      if(!empty($num1['number'])){
+        echo $num1['number'];
+      }
+      ?></td>
+      <td></td>
     </tr>
     <tr>
       <td>特獎</td>
-      <td><?=$num2['number'];?></td>
+      <td><?php
+      if(!empty($num2['number'])){
+        echo $num2['number'];
+      }
+      ?></td>
+      <td></td>
     </tr>
     <tr>
       <td>頭獎</td>
@@ -69,26 +82,32 @@
               }
           ?>
       </td>
+      <td></td>
     </tr>
     <tr>
       <td>二獎</td>
       <td></td>
+      <td><a href="award.php?aw=4&year=<?=$year;?>&period=<?=$period;?>">對獎</a></td>
     </tr>
     <tr>
       <td>三獎</td>
       <td></td>
+      <td><a href="award.php?aw=5&year=<?=$year;?>&period=<?=$period;?>">對獎</a></td>
     </tr>
     <tr>
       <td>四獎</td>
       <td></td>
+      <td><a href="award.php?aw=6&year=<?=$year;?>&period=<?=$period;?>">對獎</a></td>
     </tr>
     <tr>
       <td>五獎</td>
       <td></td>
+      <td><a href="award.php?aw=7&year=<?=$year;?>&period=<?=$period;?>">對獎</a></td>
     </tr>
     <tr>
       <td>六獎</td>
       <td></td>
+      <td><a href="award.php?aw=8&year=<?=$year;?>&period=<?=$period;?>">對獎</a></td>
     </tr>
     <tr>
       <td>增開六獎</td>
@@ -99,6 +118,7 @@
               }
           ?>
       </td>
+      <td><a href="award.php?aw=9&year=<?=$year;?>&period=<?=$period;?>">對獎</a></td>
     </tr>
   </table>
 </body>
