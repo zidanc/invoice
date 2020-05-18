@@ -31,7 +31,7 @@
   <?php
   
     // $sql="select * from `invoice` where period='$period'";
-    $rows=all('invoice',['peroid'=>$period]);
+    $rows=all('invoice',['period'=>$period]);
   ?>
   
   <table>
