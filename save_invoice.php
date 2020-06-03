@@ -1,6 +1,10 @@
 <?php
 include "./common/base.php";
 
+// 應該要先檢查輸入的資料是否符合格式等等：
+// $period=htmlspecialchars() slash() str_replace() trim($_POST['period']);
+
+// $sql語法內的順序不用跟資料庫內的該資料表相同。只要程式`欄位表格`和'輸入值'前後有順序對應就可以。
 // $sql="insert into invoice(`period`, `year`, `code`, `number`, `expend`) values('".$_POST['period']."', '".$_POST['year']."', '".$_POST['code']."', '".$_POST['number']."', '".$_POST['expend']."')";
 
 // $sql="insert into invoice(`period`, `year`, `code`, `number`, `expend`) values('$_POST[period]', '$_POST[year]', '$_POST[code]', '$_POST[number]', '$_POST[expend]')";
