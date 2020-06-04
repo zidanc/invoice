@@ -21,6 +21,8 @@ include "./common/base.php";
   $res= save('invoice',$_POST);
   if($res==1){
     echo "新增成功";
+    echo "<a href='index.php'>輸入發票</a>";
+    echo "<a href='list.php'>發票清單</a>";
   }else{
     echo "新增失敗";
   }
