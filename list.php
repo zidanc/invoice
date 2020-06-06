@@ -20,12 +20,12 @@
   
   <h1>發票列表</h1>
   <ul class="nav">
-    <li><a href="list.php?period=1" style="background:<?=($period==1)?"lightgreen":"white";?>">1(1,2)</a></li>
-    <li><a href="list.php?period=2" style="background:<?=($period==2)?"lightgreen":"white";?>">2(3,4)</a></li>
-    <li><a href="list.php?period=3" style="background:<?=($period==3)?"lightgreen":"white";?>">3(5,6)</a></li>
-    <li><a href="list.php?period=4" style="background:<?=($period==4)?"lightgreen":"white";?>">4(7,8)</a></li>
-    <li><a href="list.php?period=5" style="background:<?=($period==5)?"lightgreen":"white";?>">5(9,10)</a></li>
-    <li><a href="list.php?period=6" style="background:<?=($period==6)?"lightgreen":"white";?>">6(11,12)</a></li>
+    <li><a href="list.php?period=1" style="background:<?=($period==1)?"lightgreen":"white";?>;">1(1,2)</a></li>
+    <li><a href="list.php?period=2" style="background:<?=($period==2)?"lightgreen":"white";?>;">2(3,4)</a></li>
+    <li><a href="list.php?period=3" style="background:<?=($period==3)?"lightgreen":"white";?>;">3(5,6)</a></li>
+    <li><a href="list.php?period=4" style="background:<?=($period==4)?"lightgreen":"white";?>;">4(7,8)</a></li>
+    <li><a href="list.php?period=5" style="background:<?=($period==5)?"lightgreen":"white";?>;">5(9,10)</a></li>
+    <li><a href="list.php?period=6" style="background:<?=($period==6)?"lightgreen":"white";?>;">6(11,12)</a></li>
   </ul>
 
   <?php

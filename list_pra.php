@@ -13,25 +13,24 @@
 include "./include/header.php";  
 
 $month=date("n");
+$period=ceil($month/2);
 
 echo "目前當前月份為第"."&nbsp;".$period."期";
 
 if(isset($_GET['period'])){
   $period=$_GET['period'];
-}else{
-  $period=ceil($month/2);
 }
-
+global $pdo;
 $sql="select * from `invoice` where 'period'=$period";
 $rows=$pdo->query($sql)->fetchAll();
 ?>
 <ul>
-  <li><a href="list.php?period=1">第一期(1,2月)</a></li>
-  <li><a href="list.php?period=2">第二期(3,4月)</a></li>
-  <li><a href="list.php?period=3">第三期(5,6月)</a></li>
-  <li><a href="list.php?period=4">第四期(7,8月)</a></li>
-  <li><a href="list.php?period=5">第五期(9,10月)</a></li>
-  <li><a href="list.php?period=6">第六期(11,12月)</a></li>
+  <li><a href="list.php?period=1" style="background:<?=($period==1)?'lightgreen':'white';?>;">第一期(1,2月)</a></li>
+  <li><a href="list.php?period=2" style="background:<?=($period==2)?'lightgreen':'white';?>;">第二期(3,4月)</a></li>
+  <li><a href="list.php?period=3" style="background:<?=($period==3)?'lightgreen':'white';?>;">第三期(5,6月)</a></li>
+  <li><a href="list.php?period=4" style="background:<?=($period==4)?'lightgreen':'white';?>;">第四期(7,8月)</a></li>
+  <li><a href="list.php?period=5" style="background:<?=($period==5)?'lightgreen':'white';?>;">第五期(9,10月)</a></li>
+  <li><a href="list.php?period=6" style="background:<?=($period==6)?'lightgreen':'white';?>;">第六期(11,12月)</a></li>
 </ul>
 
 
