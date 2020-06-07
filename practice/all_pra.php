@@ -3,7 +3,7 @@ include "../common/base.php";
 
 
 function select($table,...$arg){        //,... 這樣子若函式只有$table此一變數，而沒有後方限制條件，還是能執行且不會報錯。
-  global $pdo;
+  global $pdo;                          //這裡取名為select，是因為include base.php內已有自定函式all，無法重複命名而為了練習取名select。
   $sql="select * from $table ";
   
   if(isset($arg[0]) && is_array($arg[0])){      //isset需要先寫，讓程式判斷若第二變數不存在就不進行。若先寫is_array，它會去判斷是否是陣列，然後找不到index=0回報警告訊息。

@@ -44,7 +44,7 @@ function find($table,$id){
   // return $pdo->query($sql)->fetch();                //find自定函式是只取特定一筆，所以用fetch()即可。
   $info=$pdo->query($sql)->fetch();
   if (empty($info)) {
-    return "無符合的這筆資料";    //當$id是不存在資料庫的，就返回此字串給find函式，因此第34行若找得$id是不在資料庫的，此時$row就會是存取該句字串。
+    return "無符合的這筆資料";    //當$id是不存在資料庫的，就返回此字串給find函式，因此第34行若找的$id是不在資料庫的，此時$row就會是存取該句字串。
   }                             //然後35行就會出錯，因為當$row是拿到字串時，怎麼會有陣列形式可以呼叫出來顯示呢，是吧。
                               //return特性：函式中的return一旦執行，其下方的行數就不會再去跑了。所以42一旦成立return返回了43行資訊給find函式，46就不會去跑了。
   return $info;
@@ -66,5 +66,6 @@ function to($url){
 // echo "<a href='?to=haha'>to自定函式運作解析</a>"
 //＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
 echo "<h2>to()</h2>";
+
 
 ?>
