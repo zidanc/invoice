@@ -1,4 +1,4 @@
-<?php include "./common/base.php"?>
+<?php include "./common/base.php"; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
