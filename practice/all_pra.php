@@ -19,7 +19,7 @@ function select($table,...$arg){        //,... 這樣子若函式只有$table此
   }                                         //不用else，才不會有不是這個，就一定要做另外一個的情況。
                                       //不用else，這樣才可以並行。
   if(isset($arg[1])){
-    $sql=$sql. $arg[1];
+    $sql=$sql. " $arg[1]";
   }
   echo $sql."<br>";
   return $pdo->query($sql)->fetchAll();
