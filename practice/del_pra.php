@@ -9,18 +9,28 @@ session_start();
 // $sql="delete from `table` where `id`='cc'";
 // $sql="delete from `table` where `xx`='aa' && `yy`='bb'";
 
+del("invoice",7);
+// echo "<br>";
+// del("invoice",["id"=>2]);
+// echo "<br>";
+// del("invoice",["period"=>4,"code"=>'AA']);
+
+
 function del($table,$arg){        // ,...$arg是代表可以沒有第二參數。del($table,$arg)這樣寫是此自定函式一定要兩個參數。
   global $pdo;
   $sql="delete from $table ";
 
-  if (isset($arg) && is_array($arg)) {
+  if (is_array($arg)) {
     $tmp=[];
     foreach ($arg as $key => $value) {
-      $tmp[]=sprintf("`%s`='%s'",$arg[0],$arg[1]);
+      $tmp[]=sprintf("`%s`='%s'",$key,$value);
     }
     $sql=$sql." where ".join(" && ",$tmp);
+  }else{
+    
+    $sql=$sql." where `id`='$arg'";
   }
-
+  echo $sql;
   return $pdo->exec($sql);
 
 }
