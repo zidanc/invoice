@@ -27,18 +27,18 @@ echo "<h2>find()</h2>";
  
 // print_r(find("invoice",2));
 // echo "<pre>";print_r(find("invoice",2));"</pre>";   //印不存在的id預期有錯誤訊息，但因為我是顯示陣列，所以它顯示空陣列給我，不會有錯誤訊息。
-echo find("invoice",2)['number']."<br>";            //若是印不存在的id的資訊，它會顯示錯誤訊息。
+echo find1("invoice",2)['number']."<br>";            //若是印不存在的id的資訊，它會顯示錯誤訊息。
 
 // echo "<hr>";
 
-$row=find("invoice",4);     //若第41行變數取名$row。第34行的$row和第45行的$row仍是不相同的，因為function find(){ }內的是區域變數。
+$row=find1("invoice",4);     //若第41行變數取名$row。第34行的$row和第45行的$row仍是不相同的，因為function find(){ }內的是區域變數。
 if(is_array($row)){
   echo $row['code']."-".$row['number']."-".$row['expend'];        //所以，重點是要return，就可以取返回的值。
 }else{
   echo $row;
 }
 
-function find($table,$id){        
+function find1($table,$id){        
   global $pdo;
   $sql="select * from `$table` where `id`='$id'";   //程式這樣寫有個風險，就是你輸入的id號碼，資料庫也一定要有該id。不然會出現錯誤訊息。
   // return $pdo->query($sql)->fetch();                //find自定函式是只取特定一筆，所以用fetch()即可。
@@ -66,7 +66,10 @@ function to($url){
 
 // echo "<a href='?to=haha'>to自定函式運作解析</a>"
 //＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
-echo "<h2>to()</h2>";
+echo "<h2>find()自定函式，程式碼擴增限制條件</h2>";
+echo "<p>&dollar;sql寫法跟del的&dollar;sql很像所以取用來修改</p>";
+
+
 
 
 ?>
