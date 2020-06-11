@@ -24,7 +24,7 @@ function update($table,$arg){     //更新中的變數$arg，一定是我們已�
   
                                 //認定要代入的某筆資料就是陣列型態。
     foreach ($arg as $key => $value) {
-      if($key!='id'){               //$key鍵名稱不是id，我才做下列sprintf()合併。因為我們不需要$sql語法內，要更動的語句中出現id=X。我們$sql語句當中只需要限制條件有id=X。
+      if($key!='id'){               //$key鍵名稱不是id，我才做下列sprintf()合併。因為不需要$sql語法內，要更動的欄目值語句中出現id=X，因為我們更新一筆資料時，不該動id欄目的值。$sql語句當中只需要限制條件有id=X。
         $tmp[]=sprintf("`%s`='%s'",$key,$value);
       }
     }

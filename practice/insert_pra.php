@@ -13,7 +13,7 @@ session_start();
 
 //只要資料表內不是可以null的或自動增值(如Auto Increment或Current TimeStamp)的欄位，都要求填資料進來。資料表欄目設定為varchar 或text，這邊陣列值就要加引號把它歸類為字串。
 $data=[
-  "code"=>'GH',             //新增這支程式，陣列內我們不會有id。那是資料表幫我們自動增值所賦予的。
+  "code"=>'GH',             //新增insert這支程式，陣列內我們不會有id。那是資料表幫我們自動增值所賦予的，不應該是我們要動作的欄目。
   "number"=>'88666688',     //因為號碼0開頭的情況是實際存在的，所以此欄目類型不適合用integer數字來存，要用varchar字串類型。
   "period"=>4,
   "expend"=>10,
