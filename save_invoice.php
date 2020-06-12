@@ -18,7 +18,7 @@ include "./common/base.php";
 //   'number'=>$_POST['number'],
 //   'expend'=>$_POST['expend'],
 // ];
-  $res= save('invoice',$_POST);
+  $res= save('invoice',$_POST);     //$_POST從index.php送值(新增一發票)過來，$_POST本身就是陣列型態了，所以可以這樣寫。
   if($res==1){
     echo "新增成功";
     echo "<a href='index.php'>輸入發票</a>";
