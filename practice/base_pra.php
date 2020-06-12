@@ -81,7 +81,7 @@ function nums($table,...$arg){
   if(isset($arg[1])){
     $sql=$sql. " $arg[1]";
   }
-  echo $sql."<br>";
+  // echo $sql."<br>";
   return $pdo->query($sql)->fetchColumn(); 
 }
 
@@ -117,7 +117,7 @@ function save($table,$arg){
     $sql="insert into $table (`".join("`,`",array_keys($arg))."`) values ('".join("','",$arg)."')";
     
   }
-    echo $sql;
+    // echo $sql;
     return $pdo->exec($sql);
 }
 

@@ -32,7 +32,7 @@ function update($table,$arg){
 
     $sql="update $table set ".implode(',',$tmp)." where `id`='".$arg['id']."'";
     echo $sql;
-    //return $pdo->exec($sql);
+    return $pdo->exec($sql);
 }
 
 

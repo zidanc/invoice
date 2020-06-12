@@ -12,7 +12,7 @@ echo "<pre>";print_r($_POST);"</pre>";
 增開六獎->num4 可能有多筆，而且只有三碼
 */
 
-$table="award_number";
+$table="award_number"; 
 
 $year=$_POST['year'];
 $period=$_POST['period'];
