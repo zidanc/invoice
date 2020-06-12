@@ -67,9 +67,76 @@ function to($url){
 // echo "<a href='?to=haha'>to自定函式運作解析</a>"
 //＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
 echo "<h2>find()自定函式，程式碼擴增限制條件</h2>";
-echo "<p>&dollar;sql寫法跟del的&dollar;sql很像所以取用來修改</p>";
+echo "<p style='font-size:0.6rem;color:#CCC;'>&dollar;sql寫法跟del的&dollar;sql很像，若考試時間需要，可以取用來修改</p>";
+
+function find($table,$arg){      //如果是寫find($table,...$arg)，這樣第二個參數、第三個參數一定是併成一個二維陣列顯示。然後若這樣寫，程式第77行會因為二維陣列foreach出來第一個$key是0，所以$sql的限制條件會變成`0`=''。
+  global $pdo;
+  if (is_array($arg)) {
+    $tmp=[];          //PHP因為很鬆散的語言，所以可以不用先宣告，但正常嚴謹點是要的。
+    foreach($arg as $key => $value){
+      $tmp[]=sprintf("`%s`='%s'",$key,$value);
+    }
+    $sql="select * from $table where ".join(" && ",$tmp); 
+    
+  }else{
+    $sql="select * from $table where `id`='$arg'";
+  }
+  echo $sql;
+  // $rows=$pdo->query($sql);
+  // $array=$rows->fetch(PDO::FETCH_ASSOC);    //測試: 當資料表中有同樣的三筆資料的情況下，一筆一筆fetch，讓 pointer移動。
+  // $array=$rows->fetch(PDO::FETCH_ASSOC);
+  // $array=$rows->fetch(PDO::FETCH_ASSOC);
+  // return $array;
+  return $pdo->query($sql)->fetch(PDO::FETCH_ASSOC);
+}
+
+$table="invoice";
+$data=[
+  "code"=>'wv',
+  "year"=>'2021'
+];
+// $data=5;
+
+$row=find($table,$data);
+echo "<pre>";print_r($row);"</pre>";
+
+$row=[
+  "id"=>'15',
+  "code"=>'XX',
+  "number"=>'11112222',
+  "period"=>3,
+  "expend"=>22,
+  "year"=>'2021'
+];
+
+// $row['code']='YY';  若要存值，這方式比較快，可以直接針對你要的欄目修改。若是寫第103行~110行來存值，要每個欄目都寫，不然比如你只寫4個欄目，存值後原本6個欄目的會剩下4個欄目。
+
+echo "<br>";
+echo save($table,$row);
 
 
+function save($table,$arg){
+  global $pdo;
+  
+  if(isset($arg['id'])){          //有指定id欄位的陣列資料，就是要套用更新function。新增function的陣列中，不會有id欄位值，因為資料表自動增值。
+    //更新
+        
+    foreach ($arg as $key => $value) {
+      if($key!='id'){
+        $tmp[]=sprintf("`%s`='%s'",$key,$value);
+      }
+    }
+  
+    $sql="update $table set ".join(",",$tmp)." where `id`='".$arg['id']."'" ;
 
+  }else{
+    //新增
+       
+    $sql="insert into $table (`".join("`,`",array_keys($arg))."`) values ('".join("','",$arg)."')";
+    
+  }
+    // echo $sql;
+    return $pdo->exec($sql);
+}
 
 ?>
