@@ -117,7 +117,7 @@ function save($table,$arg){
     $sql="insert into $table (`".join("`,`",array_keys($arg))."`) values ('".join("','",$arg)."')";
     
   }
-    // echo $sql;
+    echo $sql;
     return $pdo->exec($sql);
 }
 
