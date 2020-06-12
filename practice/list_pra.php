@@ -21,8 +21,6 @@ if(isset($_GET['period'])){
   $period=$_GET['period'];
 }
 
-$rows=found("invoice",3);
-
 function found($table,$period){
   global $pdo;
   $sql="select * from `$table` where `period`='$period'";
@@ -46,10 +44,6 @@ function found($table,$period){
 </ul>
 
 
-
-<?php
-foreach ($rows as $row) {
-?>
 <table>
   <tr>
     <td>編號</td>
@@ -58,6 +52,12 @@ foreach ($rows as $row) {
     <td>花費</td>
     <td></td>
   </tr>
+
+<?php
+$rows=found("invoice",$period);
+
+foreach ($rows as $row) {
+?>
   <tr>
     <td><?=$row['id'];?></td>
     <td><?=$row['code'];?></td>
@@ -65,13 +65,13 @@ foreach ($rows as $row) {
     <td><?=$row['expend'];?></td>
     <td></td>
   </tr>
-</table>
 
 
 <?php
 }
 ?>
 
+</table>
 
 
 

@@ -3,10 +3,20 @@
   box-sizing: border-box;
 }
 
-
-
 .header ul,.nav{
   list-style-type: none;
+}
+
+li{
+  margin: 15px 0px;
+}
+
+a{
+  border: 1px solid #CCC;
+  border-radius: 10px;
+  box-sizing: border-box;
+  padding: 6px;
+  text-decoration: none;
 }
 
 table{

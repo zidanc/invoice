@@ -8,10 +8,12 @@
   <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
+
   <?php include "./include/header.php";
+
   $month=date("n");     //不用m而用n，是因為我們不想要有前導0，有可能會因為回傳是字串而出現問題。
   $period=round(($month/2),0);
-  echo "目前月份所在期數:"."&nbsp;" . "$period" . "期";
+  echo "目前當前月份為：第&nbsp;".$period."&nbsp;期<br>";
   
   if(isset($_GET["period"])){
     $period=$_GET["period"];
@@ -20,18 +22,18 @@
   
   <h1>發票列表</h1>
   <ul class="nav">
-    <li><a href="list.php?period=1" style="background:<?=($period==1)?"lightgreen":"white";?>;">1(1,2)</a></li>
-    <li><a href="list.php?period=2" style="background:<?=($period==2)?"lightgreen":"white";?>;">2(3,4)</a></li>
-    <li><a href="list.php?period=3" style="background:<?=($period==3)?"lightgreen":"white";?>;">3(5,6)</a></li>
-    <li><a href="list.php?period=4" style="background:<?=($period==4)?"lightgreen":"white";?>;">4(7,8)</a></li>
-    <li><a href="list.php?period=5" style="background:<?=($period==5)?"lightgreen":"white";?>;">5(9,10)</a></li>
-    <li><a href="list.php?period=6" style="background:<?=($period==6)?"lightgreen":"white";?>;">6(11,12)</a></li>
+    <li><a href="list.php?period=1" style="background:<?=($period==1)?"lightgreen":"white";?>;">第一期(1,2月)</a></li>
+    <li><a href="list.php?period=2" style="background:<?=($period==2)?"lightgreen":"white";?>;">第二期(3,4月)</a></li>
+    <li><a href="list.php?period=3" style="background:<?=($period==3)?"lightgreen":"white";?>;">第三期(5,6月)</a></li>
+    <li><a href="list.php?period=4" style="background:<?=($period==4)?"lightgreen":"white";?>;">第四期(7,8月)</a></li>
+    <li><a href="list.php?period=5" style="background:<?=($period==5)?"lightgreen":"white";?>;">第五期(9,10月)</a></li>
+    <li><a href="list.php?period=6" style="background:<?=($period==6)?"lightgreen":"white";?>;">第六期(11,12月)</a></li>
   </ul>
 
   <?php
   
     // $sql="select * from `invoice` where period='$period'";
-    $rows=all('invoice',['period'=>$period]);
+    $rows=all('invoice',['period'=>$period]);   //參數0是陣列的形式，中間不是","，是"=>"
   ?>
   
   <table>
