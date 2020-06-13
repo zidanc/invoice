@@ -34,71 +34,63 @@ $period=ceil(date("n")/2);
   <h1>期別</h1>
    
   <ul class="nav">
-    <li><a href="list.php?period=1" style="background:<?=($period==1)?"lightgreen":"white";?>">1(1,2)</a></li>
-    <li><a href="list.php?period=2" style="background:<?=($period==2)?"lightgreen":"white";?>">2(3,4)</a></li>
-    <li><a href="list.php?period=3" style="background:<?=($period==3)?"lightgreen":"white";?>">3(5,6)</a></li>
-    <li><a href="list.php?period=4" style="background:<?=($period==4)?"lightgreen":"white";?>">4(7,8)</a></li>
-    <li><a href="list.php?period=5" style="background:<?=($period==5)?"lightgreen":"white";?>">5(9,10)</a></li>
-    <li><a href="list.php?period=6" style="background:<?=($period==6)?"lightgreen":"white";?>">6(11,12)</a></li>
+    <li><a href="invoice.php?period=1" style="background:<?=($period==1)?"lightgreen":"white";?>">1(1,2)</a></li>
+    <li><a href="invoice.php?period=2" style="background:<?=($period==2)?"lightgreen":"white";?>">2(3,4)</a></li>
+    <li><a href="invoice.php?period=3" style="background:<?=($period==3)?"lightgreen":"white";?>">3(5,6)</a></li>
+    <li><a href="invoice.php?period=4" style="background:<?=($period==4)?"lightgreen":"white";?>">4(7,8)</a></li>
+    <li><a href="invoice.php?period=5" style="background:<?=($period==5)?"lightgreen":"white";?>">5(9,10)</a></li>
+    <li><a href="invoice.php?period=6" style="background:<?=($period==6)?"lightgreen":"white";?>">6(11,12)</a></li>
   </ul>
   <a href="add_lottery_number.php"><button>新增獎號</button></a>
   
   <?php
-  $num1=find('award_number',['period'=>$period,'year'=>$year,'type'=>1]);
-  $num2=find('award_number',['period'=>$period,'year'=>$year,'type'=>2]);
-  $num3=all('award_number',['period'=>$period,'year'=>$year,'type'=>3]);
-  $num4=all('award_number',['period'=>$period,'year'=>$year,'type'=>4]);
+  $sp_num1=find('award_number',['period'=>$period,'year'=>$year,'type'=>1]);
+  $sp_num2=find('award_number',['period'=>$period,'year'=>$year,'type'=>2]);
+  $num1=all('award_number',['period'=>$period,'year'=>$year,'type'=>3]);
+  $num2=all('award_number',['period'=>$period,'year'=>$year,'type'=>4]);
   ?>
 
   <table>
     <tr>
       <td>年月份</td>
       <td><?=$year;?>年 <?=$monthStr[$period];?></td>
+      <td></td>
     </tr>
     <tr>
       <td rowspan=2>特別獎</td>
-      <td><div>No.1</div></td>
-      <td>12</td>
+      <td class="lottery_number">
+        <?php
+          if(!empty($sp_num1['number'])){
+            echo $sp_num1['number'];
+          }
+        ?>
+      </td>
+      <td rowspan=2>12</td>
     </tr>
     <tr>
       <td>同期統一發票收執聯8位數號碼，與特別獎號碼相同者，獎金1,000萬元</td>
-      <td>33
-          <?php
-              if(!empty($num1['number'])){
-                echo $num1['number'];
-              }
-          ?>
-      </td>
     </tr>
     <tr>
       <td rowspan=2>特獎</td>
-      <td><div>No.2</div></td>
-      <td>12</td>
+      <td class="lottery_number">
+        <?php
+          if(!empty($sp_num2['number'])){
+            echo $sp_num2['number'];
+          }
+        ?>
+      </td>
+      <td rowspan=2>33</td>
     </tr>
     <tr>
       <td>同期統一發票收執聯8位數號碼，與特獎號碼相同者，獎金200萬元</td>
-      <td>33
-          <?php
-              if(!empty($num2['number'])){
-                echo $num2['number'];
-              }
-          ?>
-      </td>
     </tr>
     <tr>
       <td rowspan=2>頭獎</td>
       <td><div>11</div><div>111</div><div>1111</div></td>
-      <td>12</td>
+      <td rowspan=2>12</td>
     </tr>
     <tr>
       <td>同期統一發票收執聯8位數號碼，與頭獎號碼相同者，獎金20萬元</td>
-      <td>33
-          <?php
-              foreach($num3 as $num){
-                echo $num['number']."<br>";
-              }
-          ?>
-      </td>
     </tr>
     <tr>
       <td>二獎</td>

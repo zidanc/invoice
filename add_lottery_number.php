@@ -69,5 +69,9 @@
   <input type="submit" value="送出">
   </form>
 
+<script>
+//假如輸入格式錯誤並非8位數，直接紅字警告顯示「兌獎號碼必須8位數，可以0開頭」。
+</script>
+
 </body>
 </html>
