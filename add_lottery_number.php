@@ -8,7 +8,8 @@
 </head>
 <body>
   <?php include "./include/header.php";?>
-  <form action="">
+  
+  <form action="save_number_func.php" method="post">    <!-- <form>表單的結尾標籤，要包住</table> --> 
   <table>
     <tr>
       <td>年月份</td>
@@ -26,18 +27,17 @@
     </tr>
     <tr>
       <td>特別獎</td>
-      <td><input type="number" name="num1" id=""></td>
+      <td><input type="number" name="sp_num1"></td>
     </tr>
     <tr>
       <td>特獎</td>
-      <td><input type="number" name="num2" id=""></td>
+      <td><input type="number" name="sp_num2"></td>
     </tr>
     <tr>
       <td>頭獎</td>
-      <td><input type="number" name="num3[]" id=""></td>
-      <td><input type="number" name="num3[]" id=""></td>
-      <td><input type="number" name="num3[]" id=""></td>
-      <td><input type="number" name="num3[]" id=""></td>
+      <td><input type="number" name="num1[]"></td>      <!-- 表單裡同name有重複多筆，改成用陣列來存值+傳值。-->
+      <td><input type="number" name="num1[]"></td>
+      <td><input type="number" name="num1[]"></td>
     </tr>
     <tr>
       <td>二獎</td>
@@ -61,8 +61,9 @@
     </tr>
     <tr>
       <td>增開六獎</td>
-      <td><input type="number" name="num4[]" id=""></td>
-      <td><input type="number" name="num4[]" id=""></td>
+      <td><input type="number" name="num2[]"></td>    <!-- 表單裡同name有重複多筆，改成用陣列來存值+傳值。-->
+      <td><input type="number" name="num2[]"></td>
+      <td><input type="number" name="num2[]"></td>
     </tr>
   </table>
   <input type="submit" value="送出">

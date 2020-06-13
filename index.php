@@ -9,7 +9,7 @@
 </head>
 <body>
   <?php include "./include/header.php";?>
-  <form action="save_invoice.php" method="post">
+  <form action="save_invoice_func.php" method="post">
     期別:
     <select name="period" id="">
       <option value="1">1,2月</option>

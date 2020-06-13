@@ -1,15 +1,15 @@
 <?php
 include "./common/base.php";
 
-echo "<pre>";print_r($_POST);"</pre>";
+echo "<pre>";print_r($_POST);"</pre>";    //前頁form表單submit傳值過來以method="post"。所以這頁會以$_POST收到，而且還是陣列形式。
 
 /*
-年份->year
+年份->year  ，需要幫忙轉中華民國年為西元年。
 期數->period
-特別獎->num1
-特獎->num2
-頭獎->num3 可能有多筆
-增開六獎->num4 可能有多筆，而且只有三碼
+特別獎->sp_num1
+特獎->sp_num2
+頭獎->num1 可能有多筆
+增開六獎->num2 可能有多筆，而且只有三碼
 */
 
 $table="award_number"; 
@@ -57,5 +57,5 @@ foreach($num4 as $num){
   
 }
 
-to('invoice.php')
+// to('invoice.php')
 ?>
