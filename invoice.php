@@ -16,7 +16,9 @@ $period=ceil(date("n")/2);
   }
 
   $year=date("Y");
-
+  if(isset($_GET['year'])){
+    $year=$_GET['year'];
+  }
   ?>
 
 <!DOCTYPE html>
@@ -32,7 +34,18 @@ $period=ceil(date("n")/2);
   <?php include "./include/header.php";
     $month=date("n");
     $period=round(($month/2),0);
-    
+  ?>  
+
+  <form action="invoice.php?period=<?=$period;?>&year=<?=$year;?>">    <!--？？？？為何切換年份按鈕按下，無法收到網址上已有的$period ？？？？ -->
+    <select name="year">
+      <option value="2020" <?=($year==2020)?"selected":null;?>>2020</option>
+      <option value="2021" <?=($year==2021)?"selected":null;?>>2021</option>
+      <option value="2022" <?=($year==2022)?"selected":null;?>>2022</option>
+    </select>
+    <input type="submit" value="切換年份">
+  </form>
+
+  <?php
     echo "<p class='note'>目前當前月份為：第&nbsp;".$period."&nbsp;期，</p>";
     echo "<span class='note'>要 ";
     if($month%2==0 && $month!=12){
@@ -53,12 +66,12 @@ $period=ceil(date("n")/2);
   <h1>期別</h1>
    
   <ul class="nav">
-    <li><a href="invoice.php?period=1" style="background:<?=($period==1)?"lightgreen":"white";?>">第一期(1,2月)</a></li>
-    <li><a href="invoice.php?period=2" style="background:<?=($period==2)?"lightgreen":"white";?>">第二期(3,4月)</a></li>
-    <li><a href="invoice.php?period=3" style="background:<?=($period==3)?"lightgreen":"white";?>">第三期(5,6月)</a></li>
-    <li><a href="invoice.php?period=4" style="background:<?=($period==4)?"lightgreen":"white";?>">第四期(7,8月)</a></li>
-    <li><a href="invoice.php?period=5" style="background:<?=($period==5)?"lightgreen":"white";?>">第五期(9,10月)</a></li>
-    <li><a href="invoice.php?period=6" style="background:<?=($period==6)?"lightgreen":"white";?>">第六期(11,12月)</a></li>
+    <li><a href="invoice.php?period=1&year=<?=$year;?>" style="background:<?=($period==1)?"lightgreen":"white";?>">第一期(1,2月)</a></li>
+    <li><a href="invoice.php?period=2&year=<?=$year;?>" style="background:<?=($period==2)?"lightgreen":"white";?>">第二期(3,4月)</a></li>
+    <li><a href="invoice.php?period=3&year=<?=$year;?>" style="background:<?=($period==3)?"lightgreen":"white";?>">第三期(5,6月)</a></li>
+    <li><a href="invoice.php?period=4&year=<?=$year;?>" style="background:<?=($period==4)?"lightgreen":"white";?>">第四期(7,8月)</a></li>
+    <li><a href="invoice.php?period=5&year=<?=$year;?>" style="background:<?=($period==5)?"lightgreen":"white";?>">第五期(9,10月)</a></li>
+    <li><a href="invoice.php?period=6&year=<?=$year;?>" style="background:<?=($period==6)?"lightgreen":"white";?>">第六期(11,12月)</a></li>
   </ul>
   <a href="add_lottery_number.php"><button>新增獎號</button></a>
   

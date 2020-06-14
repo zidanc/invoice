@@ -67,7 +67,7 @@ foreach($num2 as $num){
   "year"=>$year,
   "period"=>$period,
   "number"=>$num,
-  "type"=>4
+  "type"=>4    //type採用分4種，而非採用頭獎三組號碼，每一組又拆成8,7,6,5,4,3碼共6種，這樣每一期就會讓資料表產生3*6+特別1+特1+增開3=23種type。久遠來說，23種比採用4種的type方式，更造成資料庫負擔。
   ];
   // echo "<pre>";print_r($data);"</pre>";
   save($table,$data);

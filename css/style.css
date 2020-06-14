@@ -38,8 +38,34 @@ table td{
   padding: 5px;
 }
 
+table tr.first,
+tr:nth-of-type(2),
+tr:nth-of-type(3),
+tr:nth-of-type(4),
+tr:nth-of-type(5),
+tr:nth-of-type(6),
+tr:nth-of-type(7){
+  background: lightgoldenrodyellow;
+}
+
+
+tr:nth-of-type(8):hover,
+tr:nth-of-type(9):hover,
+tr:nth-of-type(10):hover,
+tr:nth-of-type(11):hover,
+tr:nth-of-type(12):hover,
+tr:nth-of-type(13):hover{
+  background: rgb(250,250,210,0.5);
+  transition: all 2s ease 0s;
+}
+
+.awd_number,
 .lottery_number{
   color: red;
+}
+
+.awd_number{
+  padding: 5px;
 }
 
 table td .award_button{
