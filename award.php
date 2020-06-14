@@ -17,17 +17,17 @@
 
   <p style="margin-bottom:20px;color:darkgreen;">開發邏輯：1.撈出獎號 2.這期有哪些發票 3.一張一張的對。</p>
 <?php
-//獎別用1,2,3,4...看不太明瞭，因此建陣列暫時對應。
+//獎別用1,2,3,4...看不太明瞭，因此建陣列暫時對應。後續兌獎，也利用此陣列當做小資料表，暫存在記憶體內。此陣列的延伸擴充與運用，是此題關鍵。
 $award_type=[
-  "1"=>["特別獎",1],
-  "2"=>["特獎",2],
-  "3"=>["頭獎",3],
-  "4"=>["二獎",3],
-  "5"=>["三獎",3],
-  "6"=>["四獎",3],
-  "7"=>["五獎",3],
-  "8"=>["六獎",3],
-  "9"=>["增開六獎",4]
+  "1"=>["特別獎",1,8,10000000],
+  "2"=>["特獎",2,8,2000000],
+  "3"=>["頭獎",3,8,200000],
+  "4"=>["二獎",3,7,40000],
+  "5"=>["三獎",3,6,10000],
+  "6"=>["四獎",3,5,4000],
+  "7"=>["五獎",3,4,1000],
+  "8"=>["六獎",3,3,200],
+  "9"=>["增開六獎",4,3,200]
 ];
 
 if(empty($_GET)){
@@ -71,6 +71,7 @@ if($awd_nums>0){
   }
 }
 // echo "<pre>";print_r($awd_number);"</pre>";
+// echo "<pre>";print_r($awd_multi);"</pre>";
 ?>
 
 <!-- 2.這期有哪些發票 -->
@@ -81,13 +82,35 @@ foreach ($invoice as $value) {
   echo "<tr class='first'>";
     echo "<td>".$value['code']."</td>";
     echo "<td>".$value['number']."</td>";
-  echo "</tr>";
-
+    $inv[]=$value['number'];
+  echo "</tr>";  
+  
 }
 
 ?>
 </table>
 
+<?php
+// 3.一張一張的對。
+$length=$award_type[$_GET['aw']]['2'];  //需要兌尾數幾碼
+//針對增開六獎號，特別處理substr的開始位置。而且不能同樣套用同一$start變數，因為發票的起始位置，和增開六獎原本就只有三碼的起始位置不相同。
+$start=8-$length;
+
+
+foreach ($inv as $inv_value) {
+  foreach ($awd_multi as $awd_value) {
+    if (mb_substr($inv_value,$start,$length) == mb_substr($awd_value,$start,$length)){         //發票的尾部x碼，兌財政部獎號的尾部x碼。
+      echo "<span style='color:red;font-size:1.5rem;'>".$inv_value."中獎了！</span>";
+      echo "<br>";
+    }else{
+      echo "感謝";
+    }
+  }
+}
+
+
+
+?>
 
 
 
