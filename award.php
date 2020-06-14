@@ -91,23 +91,42 @@ foreach ($invoice as $value) {
 </table>
 
 <?php
-// 3.一張一張的對。
+// 3.一張一張的對。兩次foreach迴圈，各將發票號碼與財政部獎號取出，然後判斷比對每一碼。
 $length=$award_type[$_GET['aw']]['2'];  //需要兌尾數幾碼
-//針對增開六獎號，特別處理substr的開始位置。而且不能同樣套用同一$start變數，因為發票的起始位置，和增開六獎原本就只有三碼的起始位置不相同。
-$start=8-$length;
 
+//針對增開六獎號，特別處理substr的開始位置。而且不能同樣套用同一$start變數，因為發票(共8碼)的起始位置，和增開六獎(共3碼)的起始位置不相同。
+// if ($_GET['aw']!==9) {
+//   $start=8-$length;      //？？？？這寫法有問題，知道錯在哪？？？？
+// }else{                   雖然財政部的增開六獎這樣else後有修正正確，從0開始，取長度3碼。但自己的發票每一張依然是8碼，若從0開始，取長度3碼，這樣就不正確了。
+//   $start=3-$length;
+// }
+
+// echo "財政部獎號";
+// echo "<pre>";print_r($awd_multi);"</pre>";   //一維陣列。
+// echo "自己的發票";
+// echo "<pre>";print_r($inv);"</pre>";   //一維陣列。
 
 foreach ($inv as $inv_value) {
+  
   foreach ($awd_multi as $awd_value) {
-    if (mb_substr($inv_value,$start,$length) == mb_substr($awd_value,$start,$length)){         //發票的尾部x碼，兌財政部獎號的尾部x碼。
+    $start=8-$length;
+
+    if ($award_type[$_GET['aw']]!==9){
+      $target_num=mb_substr($awd_value,$start,$length);
+    }else{
+      $target_num=$awd_value;
+    }
+      
+
+    if(mb_substr($inv_value,$start,$length) == $target_num){                        //發票的尾部x碼，兌財政部獎號的尾部x碼。
       echo "<span style='color:red;font-size:1.5rem;'>".$inv_value."中獎了！</span>";
       echo "<br>";
     }else{
       echo "感謝";
     }
+      
   }
 }
-
 
 
 ?>
