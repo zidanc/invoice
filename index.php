@@ -10,7 +10,8 @@
 <body>
   <?php include "./include/header.php";?>
   <form action="save_invoice_func.php" method="post">
-    期別:
+  <div class="selection">
+  <span class="period_item">期別:</span>
     <select name="period" id="">
       <option value="1">1,2月</option>
       <option value="2">3,4月</option>
@@ -19,19 +20,25 @@
       <option value="5">9,10月</option>
       <option value="6">11,12月</option>
     </select>
-    年份:
+  <span class="period_item">年份:</span>
     <select name="year" id="">
       <option value="2020">2020</option>
       <option value="2021">2021</option>
       <option value="2022">2022</option>
     </select>
-    獎號:
-    <input type="text" name="code">
-    <input type="number" name="number">
+  </div>
 
-    花費:
-    <input type="number" name="expend">
-    <input type="submit" value="儲存">
+  <div class="number">
+    <span class="period_item">獎號:</span>
+      <input type="text" name="code" class="code_col" placeholder="英文">
+      <input type="number" name="number" class="number_col" placeholder="數字8碼">
+  </div>
+  
+  <div class="expend">
+    <span class="period_item">花費:</span>
+      <input type="number" name="expend" class="expend_col">
+      <input type="submit" value="儲存">
+  </div>
 
   </form>
 

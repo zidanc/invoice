@@ -1,29 +1,35 @@
 *{
   box-sizing: border-box;
+  margin: 0px;
 }
 
 .header ul,.nav{
   list-style-type: none;
 }
 
+.header{
+  background: lightseagreen;
+  margin-bottom: 20px;
+}
+
 li{
   margin: 15px 0px;
-
+  display: inline-block;
 }
 
 .header a,
-.nav a{
+.nav a
+{
   border: 1px solid #CCC;
   border-radius: 10px;
   box-sizing: border-box;
   padding: 6px;
-  text-decoration: none;
 }
 
 table{
   border-collapse: collapse;
   border: 1px solid #0000ff20;
-  
+  margin: 20px 40px;
 }
 
 table td{
@@ -34,4 +40,38 @@ table td{
 
 .lottery_number{
   color: red;
+}
+
+table td .award_button{
+  border: 1px solid #CCC;
+  border-radius: 10px;
+  box-sizing: border-box;
+  padding: 6px;
+  background: radial-gradient(circle at 25% 30%, white, yellow, gold )
+}
+
+a{
+  text-decoration: none;
+}
+
+h1{
+  margin: 20px 40px 5px 40px;
+}
+
+.note{
+  margin: 0px 40px 0px 40px;
+}
+
+.period_item{
+  margin: 0px 0px 0px 40px;
+}
+
+.number,
+.expend,
+.selection{
+  margin: 0px 0px 10px 0px;
+}
+
+.code_col{
+  width: 40px;
 }

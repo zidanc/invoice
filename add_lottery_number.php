@@ -13,7 +13,7 @@
   <table>
     <tr>
       <td>年月份</td>
-      <td><input type="number" name="year"></td>
+      <td><input type="number" name="year" placeholder="民國 / 西元"></td>
       <td>
         <select name="period" id="">
           <option value="1">1,2月</option>

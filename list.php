@@ -13,7 +13,7 @@
 
   $month=date("n");     //不用m而用n，是因為我們不想要有前導0，有可能會因為回傳是字串而出現問題。
   $period=round(($month/2),0);
-  echo "目前當前月份為：第&nbsp;".$period."&nbsp;期<br>";
+  echo "<p class='note'>目前當前月份為：第&nbsp;".$period."&nbsp;期</p>";
   
   if(isset($_GET["period"])){
     $period=$_GET["period"];
