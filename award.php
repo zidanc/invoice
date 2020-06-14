@@ -12,10 +12,9 @@
     include "./common/base.php"
   ?>
   <h1>兌獎</h1>
-  <p style="color:darkgreen;">Note:第幾獎、幾年、第幾期、對獎結果顯示在此頁面(利用網頁傳值過來的aw=X，撈不同的資料去兌該欄目的號碼，然後結果顯示在頁面)。</p>
-  <p style="color:green;">要小心若沒有什麼結果，會不會出現錯誤訊息。對獎功能你會發現很多重複的程式碼，將它做拆解，寫自定function可以省工。</p>
+<!-- Note:第幾獎、幾年、第幾期、對獎結果顯示在此頁面(利用網頁傳值過來的aw=X，撈不同的資料去兌該欄目的號碼，然後結果顯示在頁面)。 -->
+  <p style="color:green;margin-bottom:20px;color:darkgreen;">要小心若沒有什麼結果，會不會出現錯誤訊息。對獎功能你會發現很多重複的程式碼，將它做拆解，寫自定function可以省工。</p>
 
-  <p style="margin-bottom:20px;color:darkgreen;">開發邏輯：1.撈出獎號 2.這期有哪些發票 3.一張一張的對。</p>
 <?php
 //獎別用1,2,3,4...看不太明瞭，因此建陣列暫時對應。後續兌獎，也利用此陣列當做小資料表，暫存在記憶體內。此陣列的延伸擴充與運用，是此題關鍵。
 $award_type=[
@@ -92,7 +91,7 @@ foreach ($invoice as $value) {
 
 <?php
 // 3.一張一張的對。兩次foreach迴圈，各將發票號碼與財政部獎號取出，然後判斷比對每一碼。
-$length=$award_type[$_GET['aw']]['2'];  //需要兌尾數幾碼
+
 
 //針對增開六獎號，特別處理substr的開始位置。而且不能同樣套用同一$start變數，因為發票(共8碼)的起始位置，和增開六獎(共3碼)的起始位置不相同。
 // if ($_GET['aw']!==9) {
@@ -105,13 +104,15 @@ $length=$award_type[$_GET['aw']]['2'];  //需要兌尾數幾碼
 // echo "<pre>";print_r($awd_multi);"</pre>";   //一維陣列。
 // echo "自己的發票";
 // echo "<pre>";print_r($inv);"</pre>";   //一維陣列。
+$total_num=0;
 
 foreach ($inv as $inv_value) {
   
   foreach ($awd_multi as $awd_value) {
+    $length=$award_type[$_GET['aw']]['2'];  //需要兌尾數幾碼
     $start=8-$length;
 
-    if ($award_type[$_GET['aw']]!==9){
+    if ($_GET['aw']!=9){
       $target_num=mb_substr($awd_value,$start,$length);
     }else{
       $target_num=$awd_value;
@@ -120,18 +121,35 @@ foreach ($inv as $inv_value) {
 
     if(mb_substr($inv_value,$start,$length) == $target_num){                        //發票的尾部x碼，兌財政部獎號的尾部x碼。
       echo "<span style='color:red;font-size:1.5rem;'>".$inv_value."中獎了！</span>";
+      $total_num++;
       echo "<br>";
     }else{
       echo "感謝";
     }
-      
+    
+    // $info=[];
+    // $info[]=[
+    //   "year"=>'',
+    //   "period"=>'',
+    //   "number"=>'',
+    //   "reward"=>$award_type[$_GET['aw']]['3'],
+    //   "expend"=>''
+    // ];
+
+    // $table="reward_bonus";
+    // save($table,$info);
+
   }
 }
 
+$total=$total_num*($award_type[$_GET['aw']]['3']);
 
 ?>
 
-
+<div>
+  <p>本期中獎筆數： <?=$total_num;?> 張</p> 
+  <p>本期總中獎金額： <?=$total;?> 元</p> 
+</div>
 
 </body>
 </html>

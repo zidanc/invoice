@@ -67,6 +67,7 @@
     </tr>
   </table>
   <input type="submit" value="送出">
+  <input type="reset" value="重置">
   </form>
 
 <script>

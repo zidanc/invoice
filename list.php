@@ -36,7 +36,8 @@
 
 
   <?php
-  echo "<p class='note'>此頁面為： ".$year." 年，第&nbsp;".$period."&nbsp;期</p>";
+  echo "<p class='note'>現在時刻為： ".date("Y")." 年 ".$month." 月，第&nbsp;".(round(($month/2),0))."&nbsp;期</p>";
+  echo "<p class='note'>您所在位置為： ".$year." 年，第&nbsp;".$period."&nbsp;期</p>";
   
   ?>
   

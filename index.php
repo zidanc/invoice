@@ -30,8 +30,8 @@
 
   <div class="number">
     <span class="period_item">獎號:</span>
-      <input type="text" name="code" class="code_col" placeholder="英文">
-      <input type="number" name="number" class="number_col" placeholder="數字8碼">
+      <input type="text" name="code" class="code_col" maxlength="2" placeholder="英文" required>
+      <input type="number" name="number" class="number_col" maxlength="8" placeholder="數字8碼" required>
   </div>
   
   <div class="expend">
