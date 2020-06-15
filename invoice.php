@@ -33,20 +33,25 @@ $period=ceil(date("n")/2);
 <body>
   <?php include "./include/header.php";
     $month=date("n");
-    $period=round(($month/2),0);
+    if(isset($_GET['period'])){
+      $period=$_GET['period'];
+    }else{
+      $period=round(($month/2),0);
+    }
   ?>  
 
-  <form action="invoice.php?period=<?=$period;?>&year=<?=$year;?>">    <!--？？？？為何切換年份按鈕按下，無法收到網址上已有的$period ？？？？ -->
+  <form action="invoice.php?period=<?=$period;?>&year=<?=$year;?>" method="get">    <!--？？？？為何切換年份按鈕按下，無法收到網址上已有的$period ？？？？ -->
     <select name="year">
       <option value="2020" <?=($year==2020)?"selected":null;?>>2020</option>
       <option value="2021" <?=($year==2021)?"selected":null;?>>2021</option>
       <option value="2022" <?=($year==2022)?"selected":null;?>>2022</option>
     </select>
+    <input type="hidden" name="period" value="<?=$period;?>">
     <input type="submit" value="切換年份">
   </form>
 
   <?php
-    echo "<p class='note'>目前當前月份為：第&nbsp;".$period."&nbsp;期，</p>";
+    echo "<p class='note'>目前當前月份為：第&nbsp;".round(($month/2),0)."&nbsp;期，</p>";
     echo "<span class='note'>要 ";
     if($month%2==0 && $month!=12){
       echo ($month+1)."月 25日才會開獎喔！";

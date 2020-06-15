@@ -24,13 +24,14 @@
     $period=$_GET["period"];
   }
   ?>
-
-<form action="list.php?period=<?=$period;?>&year=<?=$year;?>">    <!--？？？？為何切換年份按鈕按下，無法收到網址上已有的$period ？？？？ -->
+<!-- form標籤內若沒寫method屬性值，預設會是get。 -->
+<form action="list.php?period=<?=$period;?>&year=<?=$year;?>">   <!--？為何切換年份按鈕按下，無法收到網址上已有的$period？ 解法，加一個hidden的input傳沒收到的值-->
   <select name="year">
     <option value="2020" <?=($year==2020)?"selected":null;?>>2020</option>
     <option value="2021" <?=($year==2021)?"selected":null;?>>2021</option>
     <option value="2022" <?=($year==2022)?"selected":null;?>>2022</option>
   </select>
+  <input type="hidden" name="period" value=<?=$period;?>>
   <input type="submit" value="切換年份">
 </form>
 
