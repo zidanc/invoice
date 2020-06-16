@@ -30,16 +30,12 @@ $award_type=[
 ];
 
 if(empty($_GET)){
-  to('award.php?year=2020&period=3');
-  // echo "尚未選擇要對獎的獎別，請至<a href='invoice.php'>各期獎號</a>";
-  // exit();
+  echo "尚未選擇要對獎的獎別，請至<a href='invoice.php'>各期獎號</a>";
+  exit();
 }
 
 if(isset($_GET['aw'])){
   echo "<p>獎別： ".$award_type[$_GET['aw']]['0']."</p>";  
-}else{
-  echo "尚未選擇要對獎的獎別，請選擇各期獎號";
-  exit();
 }
 
 $year=date("Y");
