@@ -11,7 +11,7 @@
     include "./include/header.php";
     include "./common/base.php"
   ?>
-  <h1>兌獎</h1>
+  <h1>兌獎結果</h1>
 <!-- Note:第幾獎、幾年、第幾期、對獎結果顯示在此頁面(利用網頁傳值過來的aw=X，撈不同的資料去兌該欄目的號碼，然後結果顯示在頁面)。 -->
 <!-- <p style="color:green;margin-bottom:20px;color:darkgreen;">要小心若沒有什麼結果，會不會出現錯誤訊息。對獎功能你會發現很多重複的程式碼，將它做拆解，寫自定function可以省工。</p> -->
 
@@ -30,12 +30,16 @@ $award_type=[
 ];
 
 if(empty($_GET)){
-  echo "尚未選擇要對獎的獎別，請至<a href='invoice.php'>各期獎號</a>";
-  exit();
+  to('award.php?year=2020&period=3');
+  // echo "尚未選擇要對獎的獎別，請至<a href='invoice.php'>各期獎號</a>";
+  // exit();
 }
 
 if(isset($_GET['aw'])){
   echo "<p>獎別： ".$award_type[$_GET['aw']]['0']."</p>";  
+}else{
+  echo "尚未選擇要對獎的獎別，請選擇各期獎號";
+  exit();
 }
 
 $year=date("Y");
