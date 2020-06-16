@@ -77,11 +77,12 @@ if($awd_nums>0){
 <table>
 <?php
 $invoice=all("invoice",["year"=>$_GET['year'],"period"=>$_GET['period']]);
+$inv=[];
 foreach ($invoice as $value) {
   echo "<tr class='first'>";
     echo "<td>".$value['code']."</td>";
     echo "<td>".$value['number']."</td>";
-    $inv[]=$value['number'];
+   
   echo "</tr>";  
   
 }
@@ -105,8 +106,9 @@ foreach ($invoice as $value) {
 // echo "自己的發票";
 // echo "<pre>";print_r($inv);"</pre>";   //一維陣列。
 $total_num=0;
-
-foreach ($inv as $inv_value) {
+$bonus=[];
+// foreach ($inv as $inv_value) {
+foreach ($invoice as $inv) {
   
   foreach ($awd_multi as $awd_value) {
     $length=$award_type[$_GET['aw']]['2'];  //需要兌尾數幾碼
@@ -117,31 +119,34 @@ foreach ($inv as $inv_value) {
     }else{
       $target_num=$awd_value;
     }
-      
 
-    if(mb_substr($inv_value,$start,$length) == $target_num){                        //發票的尾部x碼，兌財政部獎號的尾部x碼。
-      echo "<span style='color:red;font-size:1.5rem;'>".$inv_value."中獎了！</span>";
+    
+    if(mb_substr($inv['number'],$start,$length) == $target_num){                        //發票的尾部x碼，兌財政部獎號的尾部x碼。
+      echo "<span style='color:red;font-size:1.5rem;'>".$inv['number']."中".$award_type[$_GET['aw']]['0']."了！</span>";
       $total_num++;
       echo "<br>";
-    }else{
-      echo "感謝";
+      // echo "<pre>";print_r($inv);"</pre>";
+
+        $bonus=[
+          "year"=>$inv['year'],
+          "period"=>$inv['period'],
+          "number"=>$inv['number'],
+          "reward"=>$award_type[$_GET['aw']]['3'],
+          "expend"=>$inv['expend']
+        ];
+      
+        // $table="reward_bonus";
+        // save($table,$bonus);
+        // echo "<pre>";print_r($bonus);"</pre>";
+        
+        
     }
     
-    // $info=[];
-    // $info[]=[
-    //   "year"=>'',
-    //   "period"=>'',
-    //   "number"=>'',
-    //   "reward"=>$award_type[$_GET['aw']]['3'],
-    //   "expend"=>''
-    // ];
-
-    // $table="reward_bonus";
-    // save($table,$info);
 
   }
 }
-
+//147行，測試用的echo
+// echo "<pre>";print_r($inv_value);"</pre>"; 
 $total=$total_num*($award_type[$_GET['aw']]['3']);
 
 ?>
