@@ -125,7 +125,7 @@ foreach ($invoice as $inv) {
       $count=nums("reward_bonus",["year"=>$_GET['year'],"period"=>$_GET['period'],"number"=>$inv['number']]);    
       
         if($count == 0) {
-            $bonus=[              //如果不採用兌中發票號碼存資料庫的話，只不存成二維只用一維陣列，這樣當下每一筆會洗掉之前的紀錄。
+            $bonus=[              //如果不採用兌中發票號碼存資料庫而只存進陣列的話，不存成二維陣列只用一維，這樣當下每一筆會洗掉之前的紀錄。
               "year"=>$inv['year'],
               "period"=>$inv['period'],
               "number"=>$inv['number'],
@@ -139,8 +139,6 @@ foreach ($invoice as $inv) {
             $total_num++;
             echo "<br>";
 
-        }else {
-          // echo ""
         }
     }
 
@@ -158,6 +156,8 @@ $total=$total_num*($award_type[$_GET['aw']]['3']);
 <div>
   <p>本期中獎筆數： <?=$total_num;?> 張</p> 
   <p>本期總中獎金額： <?=$total;?> 元</p> 
+
+
 </div>
 
 </body>
