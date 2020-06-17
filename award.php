@@ -11,9 +11,9 @@
     include "./include/header.php";
     include "./common/base.php"
   ?>
-  <h1>兌獎</h1>
+  <h1>兌獎結果</h1>
 <!-- Note:第幾獎、幾年、第幾期、對獎結果顯示在此頁面(利用網頁傳值過來的aw=X，撈不同的資料去兌該欄目的號碼，然後結果顯示在頁面)。 -->
-  <p style="color:green;margin-bottom:20px;color:darkgreen;">要小心若沒有什麼結果，會不會出現錯誤訊息。對獎功能你會發現很多重複的程式碼，將它做拆解，寫自定function可以省工。</p>
+<!-- <p style="color:green;margin-bottom:20px;color:darkgreen;">要小心若沒有什麼結果，會不會出現錯誤訊息。對獎功能你會發現很多重複的程式碼，將它做拆解，寫自定function可以省工。</p> -->
 
 <?php
 //獎別用1,2,3,4...看不太明瞭，因此建陣列暫時對應。後續兌獎，也利用此陣列當做小資料表，暫存在記憶體內。此陣列的延伸擴充與運用，是此題關鍵。
@@ -105,9 +105,20 @@ foreach ($invoice as $value) {
 // echo "<pre>";print_r($awd_multi);"</pre>";   //一維陣列。
 // echo "自己的發票";
 // echo "<pre>";print_r($inv);"</pre>";   //一維陣列。
+
+$award_type_re=[
+  "10000000"=>"特別獎",
+  "2000000"=>"特獎",
+  "200000"=>"頭獎",
+  "40000"=>"二獎",
+  "10000"=>"三獎",
+  "4000"=>"四獎",
+  "1000"=>"五獎"
+];
+
+
 $total_num=0;
 $bonus=[];
-// foreach ($inv as $inv_value) {
 foreach ($invoice as $inv) {
   
   foreach ($awd_multi as $awd_value) {
@@ -122,30 +133,33 @@ foreach ($invoice as $inv) {
 
     
     if(mb_substr($inv['number'],$start,$length) == $target_num){                        //發票的尾部x碼，兌財政部獎號的尾部x碼。
-        
-        $bonus=[              //如果不存成二維，只用一維，這樣當下每一筆一定會洗掉之前的紀錄。
-          "year"=>$inv['year'],
-          "period"=>$inv['period'],
-          "number"=>$inv['number'],
-          "reward"=>$award_type[$_GET['aw']]['3'],
-          "expend"=>$inv['expend']
-        ];
-        $table="reward_bonus"; 
-        save($table,$bonus);
+      $count=nums("reward_bonus",["year"=>$_GET['year'],"period"=>$_GET['period'],"number"=>$inv['number']]);    
+      
+      $bonus=[              //如果不採用兌中發票號碼存資料庫而只存進陣列的話，不存成二維陣列只用一維，這樣當下每一筆會洗掉之前的紀錄。
+        "year"=>$inv['year'],
+        "period"=>$inv['period'],
+        "number"=>$inv['number'],
+        "reward"=>$award_type[$_GET['aw']]['3'],
+        "expend"=>$inv['expend']
+      ];
 
-        $inv_checked=all($table,["year"=>$_GET['year'],"period"=>$_GET['period'],"reward"=>$award_type[$_GET['aw']]['3']]);
-        // echo "<pre>";print_r($bonus);"</pre>";
-        
-        foreach ($bonus as $bonus_each) {
-          if (!in_array($inv['number'],$bonus_each)) {
+        if($count == 0) {
+            $table="reward_bonus"; 
+            save($table,$bonus);
 
             echo "<span style='color:red;font-size:1.5rem;'>".$inv['number']."中".$award_type[$_GET['aw']]['0']."了！</span>";
             $total_num++;
             echo "<br>";
-          }
+
+        }else{
+            $table="reward_bonus";
+            $inv_checked=find($table,["year"=>$inv['year'],"period"=>$inv['period'],"number"=>$inv['number']]);
+            // echo "<pre>";print_r($inv_checked);"</pre>";
+            echo "<span style='color:red;font-size:1.5rem;'>".$inv['number']."中過".$award_type_re[$inv_checked['reward']]."了！</span>";
         }
-        
     }
+
+        
     
 
   }
@@ -157,8 +171,10 @@ $total=$total_num*($award_type[$_GET['aw']]['3']);
 ?>
 
 <div>
-  <p>本期中獎筆數： <?=$total_num;?> 張</p> 
-  <p>本期總中獎金額： <?=$total;?> 元</p> 
+  <p>本期<?=$award_type[$_GET['aw']]['0'];?>中獎筆數： <?=$total_num;?> 張</p> 
+  <p>本期<?=$award_type[$_GET['aw']]['0'];?>中獎總金額： <?=$total;?> 元</p> 
+
+
 </div>
 
 </body>
