@@ -32,14 +32,30 @@ $period=ceil(date("n")/2);
 
 <body>
   <?php include "./include/header.php";
+    
     $month=date("n");
+    $period=round(($month/2),0);
+    
     if(isset($_GET['period'])){
       $period=$_GET['period'];
-    }else{
-      $period=round(($month/2),0);
     }
-  ?>  
 
+    $year=date("Y");
+    if(isset($_GET['year'])){
+      $year=$_GET['year'];
+    }
+
+  ?>  
+<form action="reward_list.php?period=<?=$period;?>&year=<?=$year;?>">
+  <select name="year">
+    <option value="2020" <?=($year==2020)?"selected":null;?>>2020</option>
+    <option value="2021" <?=($year==2021)?"selected":null;?>>2021</option>
+    <option value="2022" <?=($year==2022)?"selected":null;?>>2022</option>
+  </select>
+  <input type="hidden" name="period" value=<?=$period;?>>
+  <input type="submit" value="切換年份">
+</form>
+    
 
 
 
