@@ -122,23 +122,28 @@ foreach ($invoice as $inv) {
 
     
     if(mb_substr($inv['number'],$start,$length) == $target_num){                        //發票的尾部x碼，兌財政部獎號的尾部x碼。
-      echo "<span style='color:red;font-size:1.5rem;'>".$inv['number']."中".$award_type[$_GET['aw']]['0']."了！</span>";
-      $total_num++;
-      echo "<br>";
-      // echo "<pre>";print_r($inv);"</pre>";
-
-        $bonus=[
+        
+        $bonus=[              //如果不存成二維，只用一維，這樣當下每一筆一定會洗掉之前的紀錄。
           "year"=>$inv['year'],
           "period"=>$inv['period'],
           "number"=>$inv['number'],
           "reward"=>$award_type[$_GET['aw']]['3'],
           "expend"=>$inv['expend']
         ];
-      
-        // $table="reward_bonus";
-        // save($table,$bonus);
+        $table="reward_bonus"; 
+        save($table,$bonus);
+
+        $inv_checked=all($table,["year"=>$_GET['year'],"period"=>$_GET['period'],"reward"=>$award_type[$_GET['aw']]['3']]);
         // echo "<pre>";print_r($bonus);"</pre>";
         
+        foreach ($bonus as $bonus_each) {
+          if (!in_array($inv['number'],$bonus_each)) {
+
+            echo "<span style='color:red;font-size:1.5rem;'>".$inv['number']."中".$award_type[$_GET['aw']]['0']."了！</span>";
+            $total_num++;
+            echo "<br>";
+          }
+        }
         
     }
     
