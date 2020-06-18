@@ -1,5 +1,6 @@
 <?php include "./common/base.php";
 
+
 $period=ceil(date("n")/2);
 
   $monthStr=[
@@ -28,6 +29,7 @@ $period=ceil(date("n")/2);
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>統一發票管理系統</title>
   <link rel="stylesheet" href="./css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -40,7 +42,7 @@ $period=ceil(date("n")/2);
     }
   ?>  
 
-  <form action="invoice.php?period=<?=$period;?>&year=<?=$year;?>" method="get">    <!--？？？？為何切換年份按鈕按下，無法收到網址上已有的$period ？？？？ -->
+  <form class="yearswitch" action="invoice.php?period=<?=$period;?>&year=<?=$year;?>" method="get">    <!--？？？？為何切換年份按鈕按下，無法收到網址上已有的$period ？？？？ -->
     <select name="year">
       <option value="2020" <?=($year==2020)?"selected":null;?>>2020</option>
       <option value="2021" <?=($year==2021)?"selected":null;?>>2021</option>
@@ -78,7 +80,7 @@ $period=ceil(date("n")/2);
     <li><a href="invoice.php?period=5&year=<?=$year;?>" style="background:<?=($period==5)?"lightgreen":"white";?>">第五期(9,10月)</a></li>
     <li><a href="invoice.php?period=6&year=<?=$year;?>" style="background:<?=($period==6)?"lightgreen":"white";?>">第六期(11,12月)</a></li>
   </ul>
-  <a href="add_lottery_number.php"><button>新增獎號</button></a>
+  <div class="button_layout"><a href="add_lottery_number.php"><button class="yearswitch">新增獎號</button></a></div>
   
   <?php
   $sp_num1=find('award_number',['period'=>$period,'year'=>$year,'type'=>1]);
@@ -87,6 +89,7 @@ $period=ceil(date("n")/2);
   $num2=all('award_number',['period'=>$period,'year'=>$year,'type'=>4]);
   ?>
 
+  <div>
   <table>
     <tr>
       <td>年月份</td>

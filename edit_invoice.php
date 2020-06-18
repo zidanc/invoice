@@ -7,6 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>統一發票管理系統</title>
   <link rel="stylesheet" href="./css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -22,7 +23,7 @@
     <div class="selection">
         <input type="hidden" name="id" value="<?=$user['id'];?>">
         
-        <span class="period_item">期別:</span>
+        <span class="period_item">期別:
           <select name="period" id="">
             <option value="1" <?=($period==1)?"selected":null;?>>1,2月</option>
             <option value="2" <?=($period==2)?"selected":null;?>>3,4月</option>
@@ -31,13 +32,15 @@
             <option value="5" <?=($period==5)?"selected":null;?>>9,10月</option>
             <option value="6" <?=($period==6)?"selected":null;?>>11,12月</option>
           </select>
-        
-        <span class="period_item">年份:</span>
+        </span>
+
+        <span class="period_item yearcol">年份:
           <select name="year" id="">
             <option value="2020" <?=($year==2020)?"selected":null;?>>2020</option>
             <option value="2021" <?=($year==2021)?"selected":null;?>>2021</option>
             <option value="2022" <?=($year==2022)?"selected":null;?>>2022</option>
           </select>
+        </span>
     </div>
 
     <div class="number">

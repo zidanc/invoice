@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>統一發票管理系統</title>
   <link rel="stylesheet" href="./css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -25,7 +26,7 @@
   }
   ?>
 <!-- form標籤內若沒寫method屬性值，預設會是get。 -->
-<form action="list.php?period=<?=$period;?>&year=<?=$year;?>">   <!--？為何切換年份按鈕按下，無法收到網址上已有的$period？ 解法，加一個hidden的input傳沒收到的值-->
+<form class="yearswitch" action="list.php?period=<?=$period;?>&year=<?=$year;?>">   <!--？為何切換年份按鈕按下，無法收到網址上已有的$period？ 解法，加一個hidden的input傳沒收到的值-->
   <select name="year">
     <option value="2020" <?=($year==2020)?"selected":null;?>>2020</option>
     <option value="2021" <?=($year==2021)?"selected":null;?>>2021</option>
