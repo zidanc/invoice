@@ -1,7 +1,7 @@
 <?php 
 
 include "./common/base.php";
-
+echo "<pre>";print_r($_POST);"</pre>";
 $res= save('invoice',$_POST);
   if($res==1){
     echo "更新成功";

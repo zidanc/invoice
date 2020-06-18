@@ -14,7 +14,8 @@
   <?php include "./include/header.php";
  
   $user=find('invoice',$_GET['id']);
-  
+  $year=$user['year'];
+  $period=$user['period'];
   ?>
   
   <form action="update_invoice.php" method="post">
@@ -22,20 +23,20 @@
         <input type="hidden" name="id" value="<?=$user['id'];?>">
         
         <span class="period_item">期別:</span>
-          <select name=<?=$user['period'];?> id="">
-            <option value="1">1,2月</option>
-            <option value="2">3,4月</option>
-            <option value="3">5,6月</option>
-            <option value="4">7,8月</option>
-            <option value="5">9,10月</option>
-            <option value="6">11,12月</option>
+          <select name="period" id="">
+            <option value="1" <?=($period==1)?"selected":null;?>>1,2月</option>
+            <option value="2" <?=($period==2)?"selected":null;?>>3,4月</option>
+            <option value="3" <?=($period==3)?"selected":null;?>>5,6月</option>
+            <option value="4" <?=($period==4)?"selected":null;?>>7,8月</option>
+            <option value="5" <?=($period==5)?"selected":null;?>>9,10月</option>
+            <option value="6" <?=($period==6)?"selected":null;?>>11,12月</option>
           </select>
         
         <span class="period_item">年份:</span>
           <select name="year" id="">
-            <option value="2020">2020</option>
-            <option value="2021">2021</option>
-            <option value="2022">2022</option>
+            <option value="2020" <?=($year==2020)?"selected":null;?>>2020</option>
+            <option value="2021" <?=($year==2021)?"selected":null;?>>2021</option>
+            <option value="2022" <?=($year==2022)?"selected":null;?>>2022</option>
           </select>
     </div>
 
@@ -52,22 +53,6 @@
     </div>
 
   </form>
-
-
-
-  <!-- 參考之前session的作法： -->
-  <!-- <input type="hidden" name="id" value="$res['id']">
-    <div><label for="acc">帳號：</label><input type="text" name="acc" value="$res['acc']"></div>
-    <div><label for="pw">密碼：</label><input type="password" name="pw" value="$res['pw']"></div>
-    <div><label for="name">姓名：</label><input type="text" name="name" value="$res['name']"></div>
-    <div><label for="email">email：</label><input type="email" name="email" value="$res['email']"></div>
-    <div><label for="tel">手機：</label><input type="tel" name="tel" value="$res['tel']"></div>
-    <div><label for="birthday">生日：</label><input type="date" name="birthday" value="$res['birthday']"></div>
-
-    <div class="btn">
-      <input type="submit" value="送出">
-      <input type="reset" value="重置">
-    </div> -->
 
 
 </body>
