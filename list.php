@@ -64,6 +64,7 @@
       <td>標記</td>
       <td>號碼</td>
       <td>花費</td>
+      <td>操作</td>
     </tr>
     
   
@@ -77,6 +78,22 @@
       <td><?=$row['code'];?></td>
       <td><?=$row['number'];?></td>
       <td><?=$row['expend'];?></td>
+      <td>
+        <label for="edit"><a href="edit_invoice.php?id=<?=$row['id'];?>&period=<?=$row['period'];?>">
+          <svg x="0px" y="0px" width="28.35px" height="28.351px" viewBox="0 0 28.35 28.351" enable-background="new 0 0 28.35 28.351" xml:space="preserve">
+              <g><path fill="#8FBDFF" d="M24.18,0H4.17C1.87,0,0,1.87,0,4.171v20.01c0,2.3,1.87,4.17,4.17,4.17h20.01c2.301,0,4.17-1.87,4.17-4.17
+              V4.171C28.35,1.87,26.48,0,24.18,0z M10.48,22.101H6.95v-3.53L17.35,8.171l3.531,3.529L10.48,22.101z M23.6,8.971l-1.719,1.72
+              l-3.521-3.52l1.72-1.721c0.359-0.37,0.96-0.37,1.32,0l2.199,2.2C23.971,8.011,23.971,8.601,23.6,8.971z"/></g>
+          </svg>
+        </label>
+        <label for="delete"><a href="delete_invoice.php?id=<?=$row['id'];?>&period=<?=$row['period'];?>">
+          <svg x="0px" y="0px" width="28.34px" height="28.351px" viewBox="0 0 28.34 28.351" enable-background="new 0 0 28.34 28.351" xml:space="preserve">
+              <g><path fill="#8FBDFF" d="M24.181,0H4.16C1.86,0,0,1.87,0,4.171v20.01c0,2.3,1.86,4.17,4.16,4.17h20.021c2.3,0,4.159-1.87,4.159-4.17
+		          V4.171C28.34,1.87,26.48,0,24.181,0z M22.681,20.28l-2.4,2.4l-6.11-6.11l-6.1,6.11l-2.4-2.4l6.101-6.1L5.67,8.07l2.4-2.399
+              l6.1,6.109l6.11-6.109l2.4,2.399l-6.11,6.11L22.681,20.28z"/></g>
+          </svg>
+        </label>
+      </td>
   </tr>
    
   
