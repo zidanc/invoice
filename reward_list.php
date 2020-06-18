@@ -55,11 +55,26 @@ $period=ceil(date("n")/2);
   <input type="hidden" name="period" value=<?=$period;?>>
   <input type="submit" value="切換年份">
 </form>
-    
 
+<?php
+$table="reward_bonus";
 
+$count=nums($table,['year'=>$year]);
+$sum=all($table,['year'=>$year]);
+$each=[];
+foreach($sum as $oneary){
+  $each[]=$oneary['reward'];   //print_r可以知道這樣寫法，其實還是一維陣列。
+}
 
+// array_sum($each); 
 
+// echo array_sum($each);
+// echo "<hr>";
+// echo "<pre>";print_r($each);"</pre>";
+
+?>
+<div>西元<?=$year;?>全年，中獎發票共有<?=$count;?>張</div>
+<div>西元<?=$year;?>全年，中獎金額共新台幣<?=array_sum($each);?>元</div>
 
 
 

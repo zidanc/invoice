@@ -2,7 +2,7 @@
 
 include_once "./common/base.php";
 
-$num=1000;
+$num=5;
 $char=[
   "A",
   "B",
@@ -28,8 +28,8 @@ for($i=0;$i<$num;$i++){
     'nmuber'=>rand(12312311,99999999),
     'expend'=>rand(10,1500),
   ];
+  save("invoice",$data);
 }
 echo "已新增".$data["code"]. $data["number"]."<br>";
-save("invoice",$data);
 
 ?>
