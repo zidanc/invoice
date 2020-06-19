@@ -72,9 +72,6 @@
    - 對獎結束顯示總計畫面
 
 # 開發紀錄：
-Link Google字體。小icon。
-save_invoice_func.php還沒對外觀統整。
-add_lottery_number.php還沒對外觀統整。
 
 按完對獎後，跳到下一頁的位置，讓使用者可以很直覺的按上一頁，網址傳值到剛才的年份、期別位置。減少要再切換的麻煩。
 獎號編輯功能：編輯、刪除獎號號碼。
@@ -116,8 +113,10 @@ add_lottery_number.php還沒對外觀統整。
 
 完成8.財政部網站提供。
 
+半完成9.外觀大致統整。
+
 完成.今晚要整理程式並用ftp上傳220。Check if it's functional.
-注意! FTP的Common資料夾中的base.php，連線的伺服機、帳密名稱不要貼錯了。
+注意! FTP中的Common資料夾內base.php，連線的伺服機、帳密名稱不要貼到本地端的了。
 
 
 
