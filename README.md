@@ -96,10 +96,6 @@ add_lottery_number.php還沒對外觀統整。
 
 9.時間允許的話，簡單導入之前寫的會員登入頁面。
 
-10.今晚要整理程式並用ftp上傳220。Check if it's functional.
-
-11.注意! FTP的Common資料夾中的base.php，連線的伺服機、帳密名稱不要貼錯了。
-
 12.每一期要按下對獎前，可以讓使用者知道，這期裡頭，存有相對應時間的發票共幾張，不然都不清楚。
 
 ## Finished
@@ -119,6 +115,9 @@ add_lottery_number.php還沒對外觀統整。
 完成7.一整年度的中獎金額、筆數。
 
 完成8.財政部網站提供。
+
+完成.今晚要整理程式並用ftp上傳220。Check if it's functional.
+注意! FTP的Common資料夾中的base.php，連線的伺服機、帳密名稱不要貼錯了。
 
 
 
